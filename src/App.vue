@@ -1,14 +1,13 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+	<div id='app'>
+		<h1>Chapel Library</h1>
+		<div class='table'>
+      <h1>Chapel Library</h1>
+		</div>
+	</div>
 </template>
 
-<style lang="less">
+<style lang='less'>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
