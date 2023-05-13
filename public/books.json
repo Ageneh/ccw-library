@@ -1,0 +1,919 @@
+[
+  {
+    "author": "Augustinus",
+    "title": "Bekenntnisse",
+    "series": "",
+    "id": "0001",
+    "owner": "JSA"
+  },
+  {
+    "author": "Wilkerson, David",
+    "title": "Frei von der Herrschaft der Sünde",
+    "series": "",
+    "id": "0002",
+    "owner": "CCW"
+  },
+  {
+    "author": "MacArthur",
+    "title": "Heaven",
+    "series": "",
+    "id": "0003",
+    "owner": "CCW"
+  },
+  {
+    "author": "Piper",
+    "title": "Vorsehung",
+    "series": "",
+    "id": "0004",
+    "owner": "CCW"
+  },
+  {
+    "author": "Stadelmann/Richter",
+    "title": "Bibelauslegung praktisch",
+    "series": "",
+    "id": "0005",
+    "owner": "SDU"
+  },
+  {
+    "author": "Kruse/Schäl",
+    "title": "Das Jesus Projekt",
+    "series": "",
+    "id": "0006",
+    "owner": "SDU"
+  },
+  {
+    "author": "Jaeger/Pletsch",
+    "title": "Biblische Lehre für junge Leute",
+    "series": "",
+    "id": "0007",
+    "owner": "CCW"
+  },
+  {
+    "author": "Kasdorf",
+    "title": "Die Umkehr",
+    "series": "",
+    "id": "0008",
+    "owner": "JSA"
+  },
+  {
+    "author": "Schaeffer",
+    "title": "Escape from Reason",
+    "series": "",
+    "id": "0009",
+    "owner": "CCW"
+  },
+  {
+    "author": "Sproul/Wolgemuth",
+    "title": "What’s in the Bible",
+    "series": "",
+    "id": "0010",
+    "owner": "CCW"
+  },
+  {
+    "author": "Packer",
+    "title": "Knowing God",
+    "series": "",
+    "id": "0011",
+    "owner": "CCW"
+  },
+  {
+    "author": "Packer",
+    "title": "Concise Theology",
+    "series": "",
+    "id": "0012",
+    "owner": "CCW"
+  },
+  {
+    "author": "Bartholomew/Goheen",
+    "title": "The Drama of Scripture",
+    "series": "",
+    "id": "0013",
+    "owner": "CCW"
+  },
+  {
+    "author": "Piper",
+    "title": "What Jesus demands from the world",
+    "series": "",
+    "id": "0014",
+    "owner": "CCW"
+  },
+  {
+    "author": "Sproul",
+    "title": "Are we Together?",
+    "series": "",
+    "id": "0015",
+    "owner": "CCW"
+  },
+  {
+    "author": "Eusebius",
+    "title": "Ecclesiastical History",
+    "series": "",
+    "id": "0016",
+    "owner": "CCW"
+  },
+  {
+    "author": "Lightfoot",
+    "title": "The Apostolic Fathers",
+    "series": "",
+    "id": "0017",
+    "owner": "CCW"
+  },
+  {
+    "author": "Grudem",
+    "title": "Bible doctrine",
+    "series": "",
+    "id": "0018",
+    "owner": "CCW"
+  },
+  {
+    "author": "Mears",
+    "title": "What the Bible is all about",
+    "series": "",
+    "id": "0019",
+    "owner": "CCW"
+  },
+  {
+    "author": "Bunyan",
+    "title": "The Pilgrims Progress Part 2",
+    "series": "",
+    "id": "0020",
+    "owner": "CCW"
+  },
+  {
+    "author": "Lloyd-Jones",
+    "title": "Die Predigt und der Prediger",
+    "series": "",
+    "id": "0021",
+    "owner": "RRU"
+  },
+  {
+    "author": "BROCKHAUS (Hrsg.)",
+    "title": "Dem Glauben Raum geben",
+    "series": "",
+    "id": "0022",
+    "owner": "CCW"
+  },
+  {
+    "author": "BERGER",
+    "title": "Jesus",
+    "series": "",
+    "id": "0023",
+    "owner": "CCW"
+  },
+  {
+    "author": "DUVALL/HAYS",
+    "title": "Grasping God’s Word",
+    "series": "",
+    "id": "0024",
+    "owner": "CCW"
+  },
+  {
+    "author": "CREMER",
+    "title": "Die christliche Lehre von den Eigenschaften Gottes",
+    "series": "",
+    "id": "0025",
+    "owner": "JSA"
+  },
+  {
+    "author": "BEYERHAUS (Hrsg.)",
+    "title": "Das Geheimnis der Dreieinigkeit im Zeugnis der Kirche",
+    "series": "",
+    "id": "0026",
+    "owner": "CCW"
+  },
+  {
+    "author": "FEE/STUART",
+    "title": "Effektives Bibelstudium",
+    "series": "",
+    "id": "0027",
+    "owner": "SDU"
+  },
+  {
+    "author": "Schlatter",
+    "title": "Calwer Bibellexikon",
+    "series": "",
+    "id": "0028",
+    "owner": "SDU"
+  },
+  {
+    "author": "Littell/ Geldbach",
+    "title": "Atlas zur Geschichte des Christentums",
+    "series": "",
+    "id": "0029",
+    "owner": "CCW"
+  },
+  {
+    "author": "Schipper",
+    "title": "Der Messias in der Heiligen Schrift offenbart",
+    "series": "",
+    "id": "0030",
+    "owner": "SDU"
+  },
+  {
+    "author": "Heussi",
+    "title": "Kompendium der Kirchengeschichte",
+    "series": "",
+    "id": "0031",
+    "owner": "JSA"
+  },
+  {
+    "author": "Brockhaus",
+    "title": "Handbuch, Die Geschichte des Christentums",
+    "series": "",
+    "id": "0032",
+    "owner": "JSA"
+  },
+  {
+    "author": "Sierszyn",
+    "title": "Von den Anfängen bis zum Untergang des weströmischen Reiches, Band 1",
+    "series": "2000 Jahre Kirchengeschichte",
+    "id": "0033",
+    "owner": "JSA"
+  },
+  {
+    "author": "Sierszyn",
+    "title": "Das Mittelalter, Band 2",
+    "series": "2000 Jahre Kirchengeschichte",
+    "id": "0034",
+    "owner": "JSA"
+  },
+  {
+    "author": "Sierszyn",
+    "title": "Reformation und Gegenreformation, Band 3",
+    "series": "2000 Jahre Kirchengeschichte",
+    "id": "0035",
+    "owner": "JSA"
+  },
+  {
+    "author": "Gaebelin",
+    "title": "Kommentar zum Alten Testament",
+    "series": "",
+    "id": "0036",
+    "owner": "SDU"
+  },
+  {
+    "author": "Gaebelin",
+    "title": "Kommentar zum Neuen Testament",
+    "series": "",
+    "id": "0037",
+    "owner": "SDu"
+  },
+  {
+    "author": "MacDonald",
+    "title": "Kommentar zum Alten Testament",
+    "series": "",
+    "id": "0038",
+    "owner": "CCW"
+  },
+  {
+    "author": "MacDonald",
+    "title": "Kommentar zum Neuen Testament",
+    "series": "",
+    "id": "0039",
+    "owner": "SDU"
+  },
+  {
+    "author": "Grünzweig",
+    "title": "Das AT",
+    "series": "Einführung in die biblischen Bücher",
+    "id": "0040",
+    "owner": "CCW"
+  },
+  {
+    "author": "Grünzweig",
+    "title": "Das NT",
+    "series": "Einführung in die biblischen Bücher",
+    "id": "0041",
+    "owner": "CCW"
+  },
+  {
+    "author": "Comfort/ Hawley",
+    "title": "Opening the Gospel of John",
+    "series": "",
+    "id": "0042",
+    "owner": "-"
+  },
+  {
+    "author": "Zahn",
+    "title": "Das Evangelium des Johannes",
+    "series": "",
+    "id": "0043",
+    "owner": "JSA"
+  },
+  {
+    "author": "Stott",
+    "title": "The Message of Romans",
+    "series": "",
+    "id": "0044",
+    "owner": "CCW"
+  },
+  {
+    "author": "Stott",
+    "title": "The Message of Ephesians",
+    "series": "",
+    "id": "0045",
+    "owner": "CCW"
+  },
+  {
+    "author": "Bräumer",
+    "title": "Das erste Buch Mose, Kapitel 1-11",
+    "series": "",
+    "id": "0046",
+    "owner": "CCW"
+  },
+  {
+    "author": "Maier",
+    "title": "Der Prophet Daniel",
+    "series": "",
+    "id": "0047",
+    "owner": "CCW"
+  },
+  {
+    "author": "Stedman",
+    "title": "Hebrews",
+    "series": "",
+    "id": "0048",
+    "owner": "JSA"
+  },
+  {
+    "author": "Lauck",
+    "title": "Die Heilige Schrift für das Leben erklärt, Evangelium und Briefe des heiligen Johannes",
+    "series": "",
+    "id": "0049",
+    "owner": "JSA"
+  },
+  {
+    "author": "Michel",
+    "title": "Der Brief an die Römer",
+    "series": "Meyer kritisch-exegetischer Kommentar über das Neue Testament",
+    "id": "0050",
+    "owner": "JSA"
+  },
+  {
+    "author": "Lohse",
+    "title": "Die Briefe an die Kolosser und an Philemon",
+    "series": "Meyer kritisch-exegetischer Kommentar über das Neue Testament",
+    "id": "0051",
+    "owner": "JSA"
+  },
+  {
+    "author": "Michel",
+    "title": "Der Brief an die Hebräer",
+    "series": "Meyer kritisch-exegetischer Kommentar über das Neue Testament",
+    "id": "0052",
+    "owner": "JSA"
+  },
+  {
+    "author": "Dibelius",
+    "title": "Der Brief des Jakobus",
+    "series": "Meyer kritisch-exegetischer Kommentar über das Neue Testament",
+    "id": "0053",
+    "owner": "JSA"
+  },
+  {
+    "author": "Goppelt",
+    "title": "Der erste Petrusbrief",
+    "series": "Meyer kritisch-exegetischer Kommentar über das Neue Testament",
+    "id": "0054",
+    "owner": "JSA"
+  },
+  {
+    "author": "Bouman",
+    "title": "Augustinus, Lebensweg und Theologie",
+    "series": "",
+    "id": "0055",
+    "owner": "JSA"
+  },
+  {
+    "author": "Elliot",
+    "title": "Im Schatten des Allmächtigen",
+    "series": "",
+    "id": "0056",
+    "owner": "SDU"
+  },
+  {
+    "author": "Obst",
+    "title": "August Hermann Francke und sein Werk",
+    "series": "",
+    "id": "0057",
+    "owner": "CCW"
+  },
+  {
+    "author": "Zimmerling",
+    "title": "Nikolaus Graf von Zinzendorf und die Herrnhuter Brudergemeinde",
+    "series": "",
+    "id": "0058",
+    "owner": "JSA"
+  },
+  {
+    "author": "Metzger",
+    "title": "A Story of Grace beyond the iron curtain",
+    "series": "",
+    "id": "0059",
+    "owner": "CCW"
+  },
+  {
+    "author": "HAUSS",
+    "title": "Väter der Christenheit",
+    "series": "",
+    "id": "0060",
+    "owner": "JSA"
+  },
+  {
+    "author": "SAUTTER",
+    "title": "Heilsgeschichte und Mission",
+    "series": "",
+    "id": "0061",
+    "owner": "JSA"
+  },
+  {
+    "author": "SMALLEY",
+    "title": "John ~ Evangelist & Interpreter",
+    "series": "",
+    "id": "0062",
+    "owner": "JSA"
+  },
+  {
+    "author": "RATZINGER/BENDIKT XVI.",
+    "title": "Jesus von Nazareth",
+    "series": "",
+    "id": "0063",
+    "owner": "JSA"
+  },
+  {
+    "author": "Sproul et al.",
+    "title": "Classical Apologetics",
+    "series": "",
+    "id": "0064",
+    "owner": "RHO"
+  },
+  {
+    "author": "Petersen",
+    "title": "Living Proof, Sharing the Gospel naturally",
+    "series": "",
+    "id": "0065",
+    "owner": "CCW"
+  },
+  {
+    "author": "Strobel",
+    "title": "The Case for a Creator",
+    "series": "",
+    "id": "0066",
+    "owner": "CCW"
+  },
+  {
+    "author": "Strobel",
+    "title": "The Case for Faith",
+    "series": "",
+    "id": "0067",
+    "owner": "CCW"
+  },
+  {
+    "author": "McDowell",
+    "title": "The New Evidence that Demands a Verdict",
+    "series": "",
+    "id": "0068",
+    "owner": "RHO"
+  },
+  {
+    "author": "Scheven",
+    "title": "Wer ihrer achtet",
+    "series": "",
+    "id": "0069",
+    "owner": "RHO"
+  },
+  {
+    "author": "Bruce",
+    "title": "Außerbiblische Zeugnisse über Jesus und das frühe Christentum",
+    "series": "",
+    "id": "0070",
+    "owner": "JSA"
+  },
+  {
+    "author": "Gustavsson",
+    "title": "Kein Grund zur Skepsis!",
+    "series": "",
+    "id": "0071",
+    "owner": "SDU"
+  },
+  {
+    "author": "Maier",
+    "title": "Josephus, seine Hauptschriften",
+    "series": "",
+    "id": "0072",
+    "owner": "JSA"
+  },
+  {
+    "author": "Zahn",
+    "title": "Grundriß des Geschichte des neutestamentlichen Kanons",
+    "series": "",
+    "id": "0073",
+    "owner": "JSA"
+  },
+  {
+    "author": "Maier",
+    "title": "Der Kanon der Bibel",
+    "series": "",
+    "id": "0074",
+    "owner": "JSA"
+  },
+  {
+    "author": "Gilbert",
+    "title": "Was ist das Evangelium",
+    "series": "",
+    "id": "0075",
+    "owner": "MGO"
+  },
+  {
+    "author": "McDowell",
+    "title": "Answers to tough Questions",
+    "series": "",
+    "id": "0076",
+    "owner": "CCW"
+  },
+  {
+    "author": "Rhodes",
+    "title": "The 10 Most Important Things you can say to a Mormon",
+    "series": "",
+    "id": "0077",
+    "owner": "CCW"
+  },
+  {
+    "author": "Rhodes",
+    "title": "Reasoning from the Scriptures with the Mormons",
+    "series": "",
+    "id": "0078",
+    "owner": "CCW"
+  },
+  {
+    "author": "Pache",
+    "title": "Inspiration und Autorität der Bibel",
+    "series": "",
+    "id": "0079",
+    "owner": "AGR?"
+  },
+  {
+    "author": "Sire",
+    "title": "The Universe next Door",
+    "series": "",
+    "id": "0080",
+    "owner": "CCW"
+  },
+  {
+    "author": "Whitney",
+    "title": "Spiritiual Disciplines for the Christian Life",
+    "series": "",
+    "id": "0081",
+    "owner": "CCW"
+  },
+  {
+    "author": "Mauerhofer",
+    "title": "Gemeindebau nach biblischen Vorbild",
+    "series": "",
+    "id": "0082",
+    "owner": "CCW"
+  },
+  {
+    "author": "Jefferson",
+    "title": "Der Hirtendienst",
+    "series": "",
+    "id": "0083",
+    "owner": "CCW"
+  },
+  {
+    "author": "Strauch",
+    "title": "Biblical Leadership",
+    "series": "",
+    "id": "0084",
+    "owner": "JSA"
+  },
+  {
+    "author": "Kauflin",
+    "title": "Worship Matters",
+    "series": "",
+    "id": "0085",
+    "owner": "JME"
+  },
+  {
+    "author": "Eims",
+    "title": "The Lost Art of Disciple Making",
+    "series": "",
+    "id": "0086",
+    "owner": "CCW"
+  },
+  {
+    "author": "MacArthur",
+    "title": "Grundlagen des Glaubens",
+    "series": "",
+    "id": "0087",
+    "owner": "CCW"
+  },
+  {
+    "author": "Broom",
+    "title": "Jüngerschaft",
+    "series": "",
+    "id": "0088",
+    "owner": "CCW"
+  },
+  {
+    "author": "MacArthur",
+    "title": "Fundamentals of the Faith",
+    "series": "",
+    "id": "0089",
+    "owner": "CCW"
+  },
+  {
+    "author": "Humble/ Fair",
+    "title": "The Seven Churches of Asia",
+    "series": "",
+    "id": "0090",
+    "owner": "CCW"
+  },
+  {
+    "author": "SALA",
+    "title": "Coffee Cup Counseling",
+    "series": "",
+    "id": "0091",
+    "owner": "CCW"
+  },
+  {
+    "author": "McDowell",
+    "title": "The Father Connection",
+    "series": "",
+    "id": "0092",
+    "owner": "CCW"
+  },
+  {
+    "author": "Owen",
+    "title": "Overcoming Sin & Temptation",
+    "series": "",
+    "id": "0093",
+    "owner": "CCW"
+  },
+  {
+    "author": "Tozer",
+    "title": "God’s Power for your Life",
+    "series": "",
+    "id": "0094",
+    "owner": "CCW"
+  },
+  {
+    "author": "Witt",
+    "title": "Diehard Sins",
+    "series": "",
+    "id": "0095",
+    "owner": "CCW"
+  },
+  {
+    "author": "LANE/TRIPP",
+    "title": "How People Change",
+    "series": "",
+    "id": "0096",
+    "owner": "CCW"
+  },
+  {
+    "author": "DEASON",
+    "title": "One Step Closer to Jesus",
+    "series": "",
+    "id": "0097",
+    "owner": "CCW"
+  },
+  {
+    "author": "ADAMS",
+    "title": "Christian Living in the Home",
+    "series": "",
+    "id": "0098",
+    "owner": "CCW"
+  },
+  {
+    "author": "DAVIS",
+    "title": "Becoming a Whole Person In A Broken World",
+    "series": "",
+    "id": "0099",
+    "owner": "CCW"
+  },
+  {
+    "author": "FITZPATRICK",
+    "title": "Overcoming Fear, Worry and Anxiety",
+    "series": "",
+    "id": "0100",
+    "owner": "CCW"
+  },
+  {
+    "author": "DEVER",
+    "title": "What is a healthy church?",
+    "series": "",
+    "id": "0101",
+    "owner": "CCW"
+  },
+  {
+    "author": "HENRY",
+    "title": "A Way To Pray",
+    "series": "",
+    "id": "0102",
+    "owner": "CCW"
+  },
+  {
+    "author": "FERGUSON",
+    "title": "Grow in Grace",
+    "series": "",
+    "id": "0103",
+    "owner": "CCW"
+  },
+  {
+    "author": "MURRAY",
+    "title": "The New Life",
+    "series": "",
+    "id": "0104",
+    "owner": "CCW"
+  },
+  {
+    "author": "ST. CLAIR",
+    "title": "Meet Jesus!",
+    "series": "",
+    "id": "0105",
+    "owner": "CCW"
+  },
+  {
+    "author": "TOZER",
+    "title": "The Purpose of Man",
+    "series": "",
+    "id": "0106",
+    "owner": "CCW"
+  },
+  {
+    "author": "DIMARCO",
+    "title": "Devotions for the God Girl",
+    "series": "",
+    "id": "0107",
+    "owner": "CCW"
+  },
+  {
+    "author": "SHIRER",
+    "title": "Ein mutiger Weg für Frauen",
+    "series": "",
+    "id": "0108",
+    "owner": "CCW"
+  },
+  {
+    "author": "FELDHAHN/RICE",
+    "title": "Wie Jungs ticken",
+    "series": "",
+    "id": "0109",
+    "owner": "CCW"
+  },
+  {
+    "author": "KELLER",
+    "title": "Es ist nicht alles Gott was glänzt",
+    "series": "",
+    "id": "0110",
+    "owner": "SDU"
+  },
+  {
+    "author": "MACARTHUR",
+    "title": "Found: God’s Will",
+    "series": "",
+    "id": "0111",
+    "owner": "CCW"
+  },
+  {
+    "author": "FERGUSON",
+    "title": "Discovering God’s Will",
+    "series": "",
+    "id": "0112",
+    "owner": "CCW"
+  },
+  {
+    "author": "FRIEL",
+    "title": "Reset for Parents",
+    "series": "",
+    "id": "0113",
+    "owner": "CCW"
+  },
+  {
+    "author": "THOMAS",
+    "title": "Sacred Marriage",
+    "series": "",
+    "id": "0114",
+    "owner": "CCW"
+  },
+  {
+    "author": "THOMAS",
+    "title": "Sacred Marriage",
+    "series": "",
+    "id": "0115",
+    "owner": "CCw"
+  },
+  {
+    "author": "THOMAS",
+    "title": "Sacred Marriage",
+    "series": "",
+    "id": "0116",
+    "owner": "CCW"
+  },
+  {
+    "author": "STEWART",
+    "title": "101 Questions people ask about Jesus",
+    "series": "",
+    "id": "0117",
+    "owner": "CCW"
+  },
+  {
+    "author": "WHITE",
+    "title": "Sexual Sanity for Men",
+    "series": "",
+    "id": "0118",
+    "owner": "CCW"
+  },
+  {
+    "author": "HUGHES",
+    "title": "Disciplines of a Godly Man",
+    "series": "",
+    "id": "0119",
+    "owner": "CCW"
+  },
+  {
+    "author": "RUTHE",
+    "title": "Schritte aus der Angst",
+    "series": "",
+    "id": "0120",
+    "owner": "CCW"
+  },
+  {
+    "author": "LUTHER",
+    "title": "Christlicher Wegweiser für jeden Tag",
+    "series": "",
+    "id": "0121",
+    "owner": "JSA"
+  },
+  {
+    "author": "GORSUCH/SCHAFFER",
+    "title": "Brothers! Calling Men Into Vital Relationships",
+    "series": "",
+    "id": "0122",
+    "owner": "CCW"
+  },
+  {
+    "author": "BUSCH",
+    "title": "Jesus unser Schicksal",
+    "series": "",
+    "id": "0123",
+    "owner": "SDU"
+  },
+  {
+    "author": "DRISCOLL",
+    "title": "Gemeinde leiten",
+    "series": "",
+    "id": "0124",
+    "owner": "CCW"
+  },
+  {
+    "author": "TIBUSEK",
+    "title": "Ein Glaube viele Kirchen",
+    "series": "",
+    "id": "0125",
+    "owner": "JSA"
+  },
+  {
+    "author": "HANEGRAAFF",
+    "title": "Counterfeit Revival",
+    "series": "",
+    "id": "0126",
+    "owner": "CCW"
+  },
+  {
+    "author": "MACDONALD",
+    "title": "Vertical Church",
+    "series": "",
+    "id": "0127",
+    "owner": "CCW"
+  },
+  {
+    "author": "MOHLER",
+    "title": "The Conviction to Lead",
+    "series": "",
+    "id": "0128",
+    "owner": "CCW"
+  },
+  {
+    "author": "MICHAELIS",
+    "title": "Das Ältestenamt",
+    "series": "",
+    "id": "0129",
+    "owner": "JSA"
+  },
+  {
+    "author": "RIESNER",
+    "title": "Die Frühzeit des Apostels Paulus",
+    "series": "",
+    "id": "0130",
+    "owner": "JSA"
+  },
+  {
+    "author": "BROCKHAUS",
+    "title": "Charisma und Amt",
+    "series": "",
+    "id": "0131",
+    "owner": "JSA"
+  }
+]
