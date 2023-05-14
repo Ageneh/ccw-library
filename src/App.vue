@@ -8,15 +8,17 @@
 
 		<div class='filters'>
 			<div class='table-filter content'>
-				<BookFilter title='Ausgeliehen'></BookFilter>
-				<BookFilter title='Verfügbar'></BookFilter>
+				<BookFilter title='Ausgeliehen'
+										v-on:update='onBorrowedFilter'></BookFilter>
+				<BookFilter title='Verfügbar'
+										v-on:update='onAvailableFilter'></BookFilter>
 				<BookFilter v-for='category in categories' :title='category'></BookFilter>
 			</div>
 		</div>
 
 		<div class='table content'>
 			<BookEntry
-				v-for='(book, pos) in books'
+				v-for='(book, pos) in filteredBooks'
 				:book='book'
 				:key='`book::${book.id}_${pos}_${book.owner}`'
 				@click='active.add(pos)' />
@@ -25,7 +27,7 @@
 </template>
 
 <script lang='ts'>
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { IBook } from '@/types';
 import BookFilter from '@/components/BookFilter.vue';
 import BookEntry from '@/components/BookEntry.vue';
@@ -66,6 +68,46 @@ export default class App extends Vue {
 		} else {
 			this.active.add(pos);
 		}
+	}
+
+	onBorrowedFilter(val: any) {
+		const a = new Set(this.filter.values());
+		if (val) a.add('borrowed');
+		else a.delete('borrowed');
+		this.filter = a;
+	}
+
+	onAvailableFilter(val: any) {
+		const a = new Set(this.filter.values());
+		if (val) a.add('available');
+		else a.delete('available');
+		this.filter = a;
+	}
+
+	get filteredBooks() {
+		return this.books.filter(book => {
+			let valid: boolean = true;
+
+			if (!(this.filter.has('borrowed') && this.filter.has('available'))) {
+				if (this.filter.has('borrowed')) {
+					valid = valid && !!book.borrowed;
+				} else if (this.filter.has('available')) {
+					valid = valid && !book.borrowed;
+				}
+			}
+			return valid;
+		})
+			// @ts-ignore
+			.sort((bookA, bookB) => {
+				const titleA = bookA.title.toLowerCase()
+				const titleB = bookB.title.toLowerCase()
+				return (titleA > titleB) ? 1 : ((titleB > titleA) ? -1 : 0);
+			});
+	}
+
+	@Watch('filter')
+	onFilterChange(prev: any, curr: any) {
+		console.log(prev, curr);
 	}
 
 }
@@ -142,5 +184,12 @@ nav {
   }
 
   position: relative;
+}
+
+.lozenge {
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, .04);
+  padding: .25rem .5rem;
+  font-size: smaller;
 }
 </style>

@@ -1,24 +1,32 @@
 <template>
-	<div class='filter' :data-selected='selected' @click='onClick'>
+	<div class='filter' :data-selected='active' @click='onClick'>
 		<p>{{ title }}</p>
 	</div>
 </template>
 
 <script lang='ts'>
-import { Component, ModelSync, Prop, Vue } from 'vue-property-decorator';
+import { Component, ModelSync, Prop, VModel, Vue } from 'vue-property-decorator';
 
 @Component
 export default class BookFilter extends Vue {
-	@ModelSync(
-		'active',
-		'change',
-		{ type: Boolean, default: false }
+	@Prop(
+		{ type: Boolean }
 	) selected!: boolean;
+	private active: boolean = false
 
 	@Prop() private title!: string;
 
-	onClick() {
-		this.selected = !this.selected;
+	get activeValue(): boolean {
+		return this.active
+	}
+
+	set activeValue(val: boolean) {
+		this.active = val;
+		this.$emit("update", this.active)
+	}
+
+	onClick(e: any) {
+		this.activeValue = !this.active;
 	}
 }
 </script>
@@ -29,6 +37,8 @@ export default class BookFilter extends Vue {
 @transparent: rgba(0, 0, 0, 0);
 
 .filter {
+  cursor: pointer;
+
 	display:  flex;
 	flex-direction: row;
 	align-items: center;

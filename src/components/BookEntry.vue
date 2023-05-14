@@ -1,11 +1,14 @@
 <template>
 	<div class='book-entry' :data-available='true' :data-selected='selected' @click='toggle'>
+		<div class='book-pre'>
+			<p class='book-id'>{{ book.id }}</p>
+		</div>
 		<div class='book-main'>
 			<h4 class='book-title'>{{ book.title }}</h4>
 			<p class='book-author'>{{ book.author }}</p>
 		</div>
 		<div class='book-meta'>
-			<p class='book-author'>{{ book.owner }}</p>
+			<p v-if='book?.owner' class='book-owner lozenge'>{{ book.owner.toUpperCase() }}</p>
 		</div>
 	</div>
 </template>
@@ -42,6 +45,8 @@ export default class BookEntry extends Vue {
 @rad: 1rem;
 
 .book-entry {
+	cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -51,6 +56,7 @@ export default class BookEntry extends Vue {
   border-radius: @rad;
   padding: 1rem;
   margin-top: .5rem;
+  margin-bottom: 1rem;
   top: 0;
   transform: scale(1);
 
@@ -73,10 +79,13 @@ export default class BookEntry extends Vue {
     text-align: left;
     display: flex;
     flex-direction: column;
+    flex-grow: 4;
+  }
 
+	.book-main, .book-pre {
     transition-timing-function: ease-in-out;
     transition-duration: 200ms;
-  }
+	}
 
   .book-title {
     font-weight: 700;
@@ -89,14 +98,26 @@ export default class BookEntry extends Vue {
   .book-meta {
     text-align: right;
     display: flex;
+    flex-grow: 1;
     justify-content: end;
-    //align-items: center;
+    align-items: end;
 
     position: relative;
     right: 0;
 
     width: 100px;
+    min-width: 100px;
   }
+
+	.book-pre {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+		flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+		//margin-right: 1rem;
+	}
 
   &::before {
     content: "";
@@ -128,8 +149,8 @@ export default class BookEntry extends Vue {
     color: #42b983;
     border: 2px solid rgba(66, 185, 131, 0.33);
 
-    .book-main {
-      margin-left: 2rem;
+    .book-main, .book-pre {
+      margin-left: 1rem;
     }
 
     &::before {
