@@ -10,6 +10,7 @@
 		<div class='book-meta'>
 			<p v-if='book?.owner' class='book-owner lozenge'>{{ book.owner.toUpperCase() }}</p>
 		</div>
+		<Checkmark class='selected-checkmark' />
 	</div>
 </template>
 
@@ -17,25 +18,27 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { IBook } from '@/types';
 import BookFilter from '@/components/BookFilter.vue';
+// @ts-ignore
+import Checkmark from '@carbon/icons-vue/es/checkmark--filled/20';
 
 @Component({
-	components: { BookFilter }
+	components: { BookFilter, Checkmark }
 })
 export default class BookEntry extends Vue {
-	@Prop() private book!: IBook
+	@Prop() private book!: IBook;
 
-	active: boolean = false
+	active: boolean = false;
 
 	toggle() {
-		this.active = !this.active
+		this.active = !this.active;
 	}
 
 	set selected(selected: boolean) {
-		this.active = selected
+		this.active = selected;
 	}
 
 	get selected() {
-		return this.active
+		return this.active;
 	}
 }
 </script>
@@ -45,7 +48,7 @@ export default class BookEntry extends Vue {
 @rad: 1rem;
 
 .book-entry {
-	cursor: pointer;
+  cursor: pointer;
 
   display: flex;
   justify-content: space-between;
@@ -60,7 +63,7 @@ export default class BookEntry extends Vue {
   top: 0;
   transform: scale(1);
 
-	overflow: hidden;
+  overflow: hidden;
 
   box-shadow: 0 0rem 0rem 0rem rgba(0, 0, 0, 0.2);
 
@@ -70,8 +73,10 @@ export default class BookEntry extends Vue {
     position: relative;
   }
 
-  transition-timing-function: ease-in-out;
-  transition-duration: 200ms;
+	&, .selected-checkmark {
+    transition-timing-function: ease-in-out;
+    transition-duration: 200ms;
+	}
 
   //background-color: #ffffff;
 
@@ -82,13 +87,14 @@ export default class BookEntry extends Vue {
     flex-grow: 4;
   }
 
-	.book-main, .book-pre {
+  .book-main, .book-pre {
     transition-timing-function: ease-in-out;
     transition-duration: 200ms;
-	}
+  }
 
   .book-title {
     font-weight: 700;
+		margin-bottom: .5rem;
   }
 
   .book-author {
@@ -109,32 +115,37 @@ export default class BookEntry extends Vue {
     min-width: 100px;
   }
 
-	.book-pre {
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
-		flex-grow: 1;
+  .book-pre {
+    @wdt: 50px;
+    //width: @wdt;
+    //min-width: @wdt;
+    //max-width: @wdt;
+    margin-right: 1.5rem;
+    //flex-grow: 1;
     display: flex;
     flex-direction: column;
-		//margin-right: 1rem;
-	}
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #42b983;
-    top: auto;
-    bottom: auto;
-    display: flex;
-    align-self: center;
-    left: -20px;
-    opacity: 0;
-
-    transition-timing-function: ease-out;
-    transition-duration: 200ms;
+    justify-items: start;
+    text-align: left;
+    opacity: 0.5;
+    //margin-right: 1rem;
   }
+
+  //&::before {
+  //  content: "";
+  //  position: absolute;
+  //  width: 20px;
+  //  height: 20px;
+  //  background-color: #42b983;
+  //  top: auto;
+  //  bottom: auto;
+  //  display: flex;
+  //  align-self: center;
+  //  left: -20px;
+  //  opacity: 0;
+	//
+  //  transition-timing-function: ease-out;
+  //  transition-duration: 200ms;
+  //}
 
   &:hover, &[data-selected="true"] {
     background-color: white;
@@ -144,18 +155,31 @@ export default class BookEntry extends Vue {
     border-radius: .5rem;
   }
 
+  .selected-checkmark {
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    opacity: 0;
+  }
+
   &[data-selected="true"] {
     background-color: white;
     color: #42b983;
     border: 2px solid rgba(66, 185, 131, 0.33);
 
     .book-main, .book-pre {
-      margin-left: 1rem;
+      margin-left: .5rem;
     }
 
-    &::before {
+    //&::before {
+    //  opacity: 1;
+    //  left: 1rem;
+    //}
+
+
+    .selected-checkmark {
+      top: 1rem;
       opacity: 1;
-      left: 1rem;
     }
   }
 

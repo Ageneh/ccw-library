@@ -1,6 +1,6 @@
 <template>
 	<div class='filter' :data-selected='active' @click='onClick'>
-		<p>{{ title }}</p>
+		{{ title }}
 	</div>
 </template>
 
@@ -16,13 +16,15 @@ export default class BookFilter extends Vue {
 
 	@Prop() private title!: string;
 
+	@Prop({required: false}) private label!: string;
+
 	get activeValue(): boolean {
 		return this.active
 	}
 
 	set activeValue(val: boolean) {
 		this.active = val;
-		this.$emit("update", this.active)
+		this.$emit("update", {category: this.label || this.title, active: this.active})
 	}
 
 	onClick(e: any) {
@@ -59,6 +61,8 @@ export default class BookFilter extends Vue {
   //color: @primary-color;
 
   border: 2px solid transparent;
+
+	white-space: nowrap;
 
   &[data-selected="true"] {
     background-color: @primary-color;

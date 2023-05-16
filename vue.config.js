@@ -41,6 +41,28 @@ const devPlugins = [
 ]
   .filter(i => !!i)
 
+const pwa = {
+  name: manifestJson.name,
+    display: manifestJson.display,
+    themeColor: manifestJson.theme_color,
+    msTileColor: "#ebebeb",
+    appleMobileWbeAppCapable: "yes",
+    appleMobileWebAppStatusBarStyle: "#ebebeb",
+    workboxOptions: {
+    exclude: [/_redirect/, /\.map$/, /_headers/],
+      clientsClaim: true,
+  },
+  manifestOptions: manifestJson,
+  // iconPaths: { TODO
+  //   faviconSVG: "favicon.svg",
+  //   favicon32: "img/icons/favicon-32x32.png",
+  //   favicon16: "img/icons/favicon-16x16.png",
+  //   appleTouchIcon: "img/icons/apple-touch-icon-180x180.png",
+  //   maskIcon: "img/icons/safari-pinned-tab.svg",
+  //   msTileImage: "img/icons/mstile-150x150.png",
+  // },
+}
+
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
@@ -48,30 +70,10 @@ module.exports = defineConfig({
       ...isDev ? devPlugins : [],
     ],
   },
-  pwa: {
-    name: manifestJson.name,
-    display: manifestJson.display,
-    themeColor: manifestJson.theme_color,
-    msTileColor: "#ebebeb",
-    appleMobileWbeAppCapable: "yes",
-    appleMobileWebAppStatusBarStyle: "#ebebeb",
-    workboxOptions: {
-      exclude: [/_redirect/, /\.map$/, /_headers/],
-      clientsClaim: true,
-    },
-    manifestOptions: manifestJson,
-    // iconPaths: { TODO
-    //   faviconSVG: "favicon.svg",
-    //   favicon32: "img/icons/favicon-32x32.png",
-    //   favicon16: "img/icons/favicon-16x16.png",
-    //   appleTouchIcon: "img/icons/apple-touch-icon-180x180.png",
-    //   maskIcon: "img/icons/safari-pinned-tab.svg",
-    //   msTileImage: "img/icons/mstile-150x150.png",
-    // },
-  },
-  devServer: {
-    proxy: "http://localhost:8888",
-  },
-  crossorigin: "anonymous",
-  pluginOptions: {},
+  // pwa,
+  // devServer: {
+  //   proxy: "http://localhost:8888",
+  // },
+  // crossorigin: "anonymous",
+  // pluginOptions: {},
 })

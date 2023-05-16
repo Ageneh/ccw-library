@@ -7,18 +7,31 @@
 		</div>
 
 		<div class='filters'>
-			<div class='table-filter content'>
-				<BookFilter title='Ausgeliehen'
-										v-on:update='onBorrowedFilter'></BookFilter>
-				<BookFilter title='Verfügbar'
-										v-on:update='onAvailableFilter'></BookFilter>
-				<BookFilter v-for='category in categories' :title='category'></BookFilter>
+
+			<div class='search'>
+				<SearchBar @enter='onSearch' />
+			</div>
+
+			<div class='table-filter-container content'>
+				<div class='filter-gradient-overlay'></div>
+
+				<div class='table-filters'>
+					<BookFilter title='Ausgeliehen'
+											label='borrowed'
+											@update='onFilterLozenge'/>
+					<BookFilter title='Verfügbar'
+											label='available'
+											@update='onFilterLozenge'/>
+					<BookFilter v-for='category in categories'
+											:title='category'
+											@update='onFilterLozenge'/>
+				</div>
 			</div>
 		</div>
 
-		<div class='table content'>
+		<div class='table content' :key='`${query}-${filterStr}`'>
 			<BookEntry
-				v-for='(book, pos) in filteredBooks'
+				v-for='(book, pos) in books'
 				:book='book'
 				:key='`book::${book.id}_${pos}_${book.owner}`'
 				@click='active.add(pos)' />
@@ -31,94 +44,61 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { IBook } from '@/types';
 import BookFilter from '@/components/BookFilter.vue';
 import BookEntry from '@/components/BookEntry.vue';
+import SearchBar from '@/components/SearchBar.vue';
 
 @Component({
-	components: { BookEntry, BookFilter }
+	components: { SearchBar, BookEntry, BookFilter }
 })
 export default class App extends Vue {
 	@Prop() private msg!: string;
 
-	mod = false;
+	light: boolean = false
+	active: Set<number> = new Set()
+	filter: Set<string> = new Set<string>()
 
-	books: IBook[] = [];
-	groupedBooks: { [book: string]: IBook[] } = {};
-	light: boolean = false;
-
-	categories: Set<string> = new Set();
-
-	active: Set<number> = new Set();
-
-	filter: Set<string> = new Set<string>();
+	get filterStr(): string {
+		return [...this.filter.values()].join("-")
+	}
 
 	async beforeMount() {
-		const baseUrl = process.env.BASE_URL;
-		const data = await fetch(`${baseUrl}books_v2.json`);
-		this.books = await data.json();
-
-		this.categories = new Set(this.books.map(book => book.category));
+		await this.$store.dispatch("initialize")
 	}
 
-	onTileChange(event: any) {
-		console.log(event);
+	onFilterLozenge({ category, active }: any) {
+		if (["available", "borrowed"].includes(category)) return
+		this.$store.commit("toggleCategoryFilter", { category, active })
 	}
 
-	onClick(pos: number) {
-		if (this.active.has(pos)) {
-			this.active.delete(pos);
-		} else {
-			this.active.add(pos);
-		}
+	onSearch(queryString: string) {
+		this.$store.commit("setQuery", queryString)
 	}
 
-	onBorrowedFilter(val: any) {
-		const a = new Set(this.filter.values());
-		if (val) a.add('borrowed');
-		else a.delete('borrowed');
-		this.filter = a;
+	get query(): string {
+		return this.$store.state.query
 	}
 
-	onAvailableFilter(val: any) {
-		const a = new Set(this.filter.values());
-		if (val) a.add('available');
-		else a.delete('available');
-		this.filter = a;
+	get books(): IBook[] {
+		return this.$store.getters.filteredBooks
 	}
 
-	get filteredBooks() {
-		return this.books.filter(book => {
-			let valid: boolean = true;
-
-			if (!(this.filter.has('borrowed') && this.filter.has('available'))) {
-				if (this.filter.has('borrowed')) {
-					valid = valid && !!book.borrowed;
-				} else if (this.filter.has('available')) {
-					valid = valid && !book.borrowed;
-				}
-			}
-			return valid;
-		})
-			// @ts-ignore
-			.sort((bookA, bookB) => {
-				const titleA = bookA.title.toLowerCase()
-				const titleB = bookB.title.toLowerCase()
-				return (titleA > titleB) ? 1 : ((titleB > titleA) ? -1 : 0);
-			});
-	}
-
-	@Watch('filter')
-	onFilterChange(prev: any, curr: any) {
-		console.log(prev, curr);
+	get categories(): string[] {
+		return this.$store.state.categories
 	}
 
 }
 </script>
 
+<style lang='css'>
+:root {
+    --background-color: #f8f6f5;
+}
+</style>
+
 <style lang='less'>
 @primary-color: #296b6a;
 
 body {
-  //background-color: #42b983 !important;
-  background-color: #f8f6f5 !important;
+  background-color: var(--background-color) !important;
 
 }
 
@@ -133,18 +113,61 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
+	padding-top: 2rem;
 }
 
 .filters {
-  .table-filter {
+
+  .table-filter-container {
+    position: relative;
+    z-index: 0;
     display: flex;
     flex-direction: row;
 
-    overflow-x: scroll;
+    .table-filters {
+      display: flex;
+      flex-direction: row;
+      position: relative;
 
-    padding-bottom: 1rem;
+      overflow-x: scroll;
+
+      padding-left: 2rem;
+      padding-right: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    .filter-gradient-overlay {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      pointer-events: none;
+
+      &:after, &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 10;
+        height: 100%;
+        width: 5rem;
+      }
+
+      &:after {
+        right: 0;
+        background: linear-gradient(-90deg, var(--background-color) 0%, transparent 85%);
+      }
+
+      &:before {
+        left: 0;
+        background: linear-gradient(90deg, var(--background-color) 0%, transparent 85%);
+      }
+    }
   }
 }
+
 
 .logo-container {
   height: 85px;
