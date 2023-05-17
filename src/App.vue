@@ -4,17 +4,35 @@
 			<h1>
 				<img src='/img/chapel-library-logo.png' alt='Chapel Library Logo'>
 			</h1>
+			<button type='submit' v-if='!isNaN(Number(query)) && query.trim().length > 0' @click='displayReturnModal = true'>Zurückgeben</button>
 		</div>
 
 		<div id='borrow-modal' class='modal' aria-modal='true' v-if='displayBorrowModal'>
-			<div class='form'>
-				<form action='#' method='dialog' onsubmit='() => {}'>
-					<h3 class='title'>"{{ selectedBook.title }}" ausleihen</h3>
-					<input type='text' v-model='username' placeholder='Username'>
-					<button type='submit' @click.stop='borrow(bookId, username)'>Ausleihen</button>
-				</form>
+			<div class='form-container' @click.prevent>
+				<div class='form'>
+					<form action='#' method='dialog' onsubmit='() => {}'>
+						<h3 class='title'>"{{ selectedBook.title }}" ausleihen</h3>
+						<input type='text' v-model='username' placeholder='Username'>
+						<button type='submit' @click.stop='borrow(username)'
+										:disabled='username.trim().length < 3'>Ausleihen</button>
+					</form>
+				</div>
 			</div>
-			<div class='blanket'></div>
+			<div class='blanket' @click.prevent='displayBorrowModal = false'></div>
+		</div>
+
+		<div id='return-modal' class='modal' aria-modal='true' v-if='displayReturnModal'>
+			<div class='form-container' @click.prevent>
+				<div class='form'>
+					<form action='#' method='dialog' onsubmit='() => {}'>
+						<h3 class='title'>Buch #{{ query }} zurückgeben</h3>
+						<input type='text' v-model='username' placeholder='Username'>
+						<button type='submit' @click.stop='returnBook(Number(query), username)'
+										:disabled='username.trim().length < 3'>Zurückgeben</button>
+					</form>
+				</div>
+			</div>
+			<div class='blanket' @click.prevent='displayBorrowModal = false'></div>
 		</div>
 
 		<div class='filters'>
@@ -78,6 +96,7 @@ export default class App extends Vue {
 	filter: Set<string> = new Set<string>();
 
 	displayBorrowModal = false;
+	displayReturnModal = false;
 
 	get filterStr(): string {
 		return [...this.filter.values()].join('-');
@@ -87,19 +106,36 @@ export default class App extends Vue {
 		await this.$store.dispatch('initialize');
 	}
 
-	async borrow(bookId: number, username: string) {
+	async borrow(username: string) {
 		if (!this.selectedBook) {
 			this.displayBorrowModal = false;
-			return
+			return;
 		}
 		await fetch(`/.netlify/functions/airtable-borrowBook?${new URLSearchParams({
 			username,
-			book_id: `${bookId}`,
+			book_id: `${this.selectedBook.book_id}`,
 			book_ref: `${this.selectedBook._id}`
 		}).toString()}`)
 			.finally(() => {
 				this.displayBorrowModal = false;
-				this.$store.dispatch("initialize")
+				this.$store.dispatch('initialize');
+			});
+	}
+
+	async returnBook(bookId: number, username: string) {
+		const book: IBook | undefined = this.$store.getters.getByBookId(bookId);
+		if (!book) {
+			return;
+		}
+		await fetch(`/.netlify/functions/airtable-returnBook?${new URLSearchParams({
+			username,
+			book_id: `${book.book_id}`,
+			book_ref: `${book._id}`
+		}).toString()}`)
+			.finally(() => {
+				this.displayReturnModal = false;
+				this.$store.commit('setQuery', '');
+				this.$store.dispatch('initialize');
 			});
 	}
 
@@ -166,7 +202,17 @@ export default class App extends Vue {
   align-items: center;
   justify-items: center;
 
-  color: white;
+  .blanket {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+  }
+
+  //color: white;
 
   .title {
     margin-bottom: 2rem
@@ -181,7 +227,7 @@ export default class App extends Vue {
     //margin: 1rem 0;
     //background-color: transparent;
     width: 100%;
-		max-width: 500px;
+    max-width: 500px;
     z-index: 5;
 
     transition-duration: 150ms;
@@ -198,12 +244,28 @@ export default class App extends Vue {
     }
   }
 
-  .form {
+  .form-container {
+    //padding: 2rem;
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
-    height: 300px;
-    margin-bottom: 5rem;
+    position: relative;
+    z-index: 5;
+    transform: translateY(-3rem);
+
+    .form {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      width: 500px;
+      height: 300px;
+
+      form {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem 1rem;
+        box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.3);
+      }
+    }
   }
 }
 </style>
@@ -227,7 +289,7 @@ body {
   text-align: center;
   color: #2c3e50;
 
-  padding-top: 2rem;
+  padding: 2rem 1rem 2rem 1rem;
 }
 
 .filters {
@@ -287,12 +349,21 @@ body {
 
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   padding: 0.5rem;
 
   img, h1 {
     height: 100%;
     width: auto;
+  }
+
+  button {
+    padding: .5rem .75rem;
+    background-color: white;
+    border: 2px solid white;
+
+    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.05);
   }
 }
 
@@ -334,6 +405,10 @@ nav {
   left: 0;
   right: 0;
   bottom: 2rem;
+
+	* {
+    box-shadow: 0 0 4rem -.5rem #153b2a;
+	}
 }
 
 button {
@@ -343,5 +418,10 @@ button {
   background-color: #42b983;
   border: 2px solid #42b983;
   cursor: pointer;
+
+  &:disabled {
+    background-color: rgba(66, 185, 131, 0.39);
+    border: 2px solid rgba(66, 185, 131, 0.39);
+  }
 }
 </style>

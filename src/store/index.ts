@@ -51,7 +51,16 @@ export default new Vuex.Store<State>({
 
 			return booksByCategory;
 		},
-		isReady: (state) => !!state.allBooks && state.allBooks.length > 0
+		isReady: (state) => !!state.allBooks && state.allBooks.length > 0,
+		getByBookId: (state) => {
+			return (bookId: number): IBook | undefined => {
+				const filtered = state.allBooks.filter(book => book.book_id === bookId)
+				if (filtered.length > 0) {
+					return filtered[0]
+				}
+				return undefined;
+			};
+		}
 	},
 	mutations: {
 		setAllBooks: (state, books: Books) => state.allBooks = books,
@@ -70,9 +79,6 @@ export default new Vuex.Store<State>({
 	},
 	actions: {
 		initialize: async ({ commit }) => {
-			const baseUrl = process.env.BASE_URL;
-			const data = await fetch(`${baseUrl}books_v2.json`);
-
 			const data1: any = await airtableMiddleware.getAllBooks();
 			const allBooks: Books = data1.map((ref: any) => {
 				return {

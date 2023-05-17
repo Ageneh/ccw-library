@@ -66,16 +66,51 @@ export default class AirtableMiddleware {
 						book_id: bookId,
 						username: username
 					}
-				},
+				}
 			]),
 			writeBookTable.update([
 				{
 					id: bookRef,
 					fields: {
-						borrowed: new Date().toISOString().split("T")[0]
-					},
+						borrowed: new Date().toISOString().split('T')[0]
+					}
 				}
-			]),
+			])
+		]);
+	};
+
+	returnBook = async (bookId: string, username: string, bookRef: string) => {
+		const writeBookTable = await this.writeBase(BOOKS_TITLE);
+		const writeBorrowedTable = await this.writeBase(BORROW_MAP_TITLE);
+		const readBorrowedTable = await this.readBase(BORROW_MAP_TITLE);
+
+		const borrowed = await readBorrowedTable
+			.select({
+				// maxRecords: 20,
+				view: "Mappings",
+			})
+			.all();
+		const matches = borrowed
+			.filter(record => {
+				return record.fields.book_id === bookId && record.fields.username === username;
+			})
+
+		if (matches.length < 1) {
+			return {}
+		}
+
+		return await Promise.all([
+			...matches.map(async (borrowedBook) => {
+				return await writeBorrowedTable.destroy(borrowedBook.id)
+			}),
+			writeBookTable.update([
+				{
+					id: bookRef,
+					fields: {
+						borrowed: ''
+					}
+				}
+			])
 		]);
 	};
 
