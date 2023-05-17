@@ -1,7 +1,7 @@
 <template>
-	<div class='book-entry' :data-available='true' :data-selected='selected' @click='toggle'>
+	<div class='book-entry' :data-borrowed='!!book.borrowed' :data-selected='active'>
 		<div class='book-pre'>
-			<p class='book-id'>{{ book.id }}</p>
+			<p class='book-id'>{{ book.book_id }}</p>
 		</div>
 		<div class='book-main'>
 			<h4 class='book-title'>{{ book.title }}</h4>
@@ -26,20 +26,7 @@ import Checkmark from '@carbon/icons-vue/es/checkmark--filled/20';
 })
 export default class BookEntry extends Vue {
 	@Prop() private book!: IBook;
-
-	active: boolean = false;
-
-	toggle() {
-		this.active = !this.active;
-	}
-
-	set selected(selected: boolean) {
-		this.active = selected;
-	}
-
-	get selected() {
-		return this.active;
-	}
+	@Prop() private active!: boolean;
 }
 </script>
 
@@ -183,7 +170,7 @@ export default class BookEntry extends Vue {
     }
   }
 
-  &[data-available="false"] {
+  &[data-borrowed="true"] {
     //background-color: rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
     opacity: .5;

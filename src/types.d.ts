@@ -5,7 +5,8 @@ declare module "@carbon/icons-vue" {
 }
 
 export interface IBook {
-	id: number;
+	_id: string; // ID FROM AIRTABLE
+	book_id: number;
 	author: string;
 	title: string;
 	borrowed?: string; // date
