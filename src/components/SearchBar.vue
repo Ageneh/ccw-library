@@ -25,7 +25,7 @@ export default class SearchBar extends Vue {
 		}
 		const timeout = setTimeout(() => {
 			this.$emit('enter', e.target.value);
-		}, 500);
+		}, 300);
 		this.debouncer = timeout as unknown as number
 	}
 

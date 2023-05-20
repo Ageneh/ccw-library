@@ -4,12 +4,13 @@ import { IBook } from '@/types';
 export const defaultFuseOptions = {
 	include: ['matches'],
 	shouldSort: true,
-	threshold: 0.5,
+	threshold: 0.2,
 	location: 0,
-	distance: 10,
+	distance: 80,
 	maxPatternLength: 32,
 	minMatchCharLength: 2,
-	keys: []
+	keys: [],
+	ignoreLocation: true,
 };
 
 export default class SearchUtil {

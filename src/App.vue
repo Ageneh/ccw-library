@@ -4,10 +4,13 @@
 			<h1>
 				<img src='/img/chapel-library-logo.png' alt='Chapel Library Logo'>
 			</h1>
-			<button type='submit' v-if='!isNaN(Number(query)) && query.trim().length > 0' @click='displayReturnModal = true'>
+			<button v-if='!isNaN(Number(query)) && query.trim().length > 0'
+							type='submit'
+							@click='displayReturnModal = true'>
 				Zurückgeben
 			</button>
 		</div>
+
 		<div id='borrow-modal' class='modal' aria-modal='true' v-if='displayBorrowModal'>
 			<div class='form-container' @click.prevent>
 				<div class='form'>
@@ -22,7 +25,6 @@
 			</div>
 			<div class='blanket' @click.prevent='displayBorrowModal = false'></div>
 		</div>
-
 		<div id='return-modal' class='modal' aria-modal='true' v-if='displayReturnModal'>
 			<div class='form-container' @click.prevent>
 				<div class='form'>
@@ -35,7 +37,7 @@
 					</form>
 				</div>
 			</div>
-			<div class='blanket' @click.prevent='displayBorrowModal = false'></div>
+			<div class='blanket' @click.prevent='displayReturnModal = false'></div>
 		</div>
 
 		<div class='filters'>
@@ -455,11 +457,12 @@ body {
   }
 
   button {
-    padding: .5rem .75rem;
+    padding: .25rem .75rem;
     background-color: white;
     border: 2px solid white;
+		margin: .25rem 0 !important;
 
-    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.2);
   }
 }
 
