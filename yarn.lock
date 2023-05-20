@@ -6235,6 +6235,11 @@
   "resolved" "https://registry.npmjs.org/vue-class-component/-/vue-class-component-7.2.6.tgz"
   "version" "7.2.6"
 
+"vue-content-loader@^2.0.1":
+  "integrity" "sha512-pkof4+q2xmzNEdhqelxtJejeP/vQUJtLle4/v2ueG+HURqM9Q/GIGC8GJ2bVVWeLfTDET51jqimwQdmxJTlu0g=="
+  "resolved" "https://registry.npmjs.org/vue-content-loader/-/vue-content-loader-2.0.1.tgz"
+  "version" "2.0.1"
+
 "vue-demi@^0.11.4":
   "integrity" "sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A=="
   "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.11.4.tgz"

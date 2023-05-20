@@ -1,7 +1,6 @@
-/// <reference types="node" />
-
 declare module "@carbon/icons-vue" {
-
+	import icons from '@carbon/icons-vue'
+	export default icons
 }
 
 export interface IBook {

@@ -48,7 +48,7 @@ export default class BookFilter extends Vue {
 	max-height: 40px;
 	//width: 200px;
 
-  background-color: rgba(0, 0, 0, .1);
+  background-color: var(--loader-bg-color);
   margin-left: 1rem;
 
   padding: .5rem 1rem;

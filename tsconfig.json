@@ -17,7 +17,9 @@
       "airtable",
       "webpack-env",
       "vuex",
-      "vue"
+      "vue",
+      "@carbon/vue",
+      "@carbon"
     ],
     "paths": {
       "@/*": [
@@ -32,6 +34,7 @@
     ]
   },
   "include": [
+    "**/*.d.ts",
     "netlify/**/*.ts",
     "src/**/*.ts",
     "src/**/*.tsx",

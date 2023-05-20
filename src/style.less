@@ -1,0 +1,49 @@
+.loader {
+  //background-color: rgb(227, 141, 0);
+  //animation: loaderAnim 4s cubic-bezier(0.5, 0, 0.75, 0) 0s infinite normal forwards;
+  box-shadow: 0 .25rem 2rem -.95rem rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+    rgba(255, 255, 255, .0) 0%,
+    rgba(255, 255, 255, .4) 45%,
+    rgba(255, 255, 255, .4) 55%,
+    rgba(255, 255, 255, .0) 100%);
+
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+  }
+
+  .loader-item {
+    border-radius: 3rem;
+    background-color: var(--loader-bg-color);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes loaderAnim {
+  0%,
+  50%,
+  100% {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  25%,
+  75% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}

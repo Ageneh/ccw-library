@@ -4,7 +4,9 @@
 			<h1>
 				<img src='/img/chapel-library-logo.png' alt='Chapel Library Logo'>
 			</h1>
-			<button type='submit' v-if='!isNaN(Number(query)) && query.trim().length > 0' @click='displayReturnModal = true'>Zurückgeben</button>
+			<button type='submit' v-if='!isNaN(Number(query)) && query.trim().length > 0' @click='displayReturnModal = true'>
+				Zurückgeben
+			</button>
 		</div>
 
 		<div id='borrow-modal' class='modal' aria-modal='true' v-if='displayBorrowModal'>
@@ -14,7 +16,8 @@
 						<h3 class='title'>"{{ selectedBook.title }}" ausleihen</h3>
 						<input type='text' v-model='username' placeholder='Username'>
 						<button type='submit' @click.stop='borrow(username)'
-										:disabled='username.trim().length < 3'>Ausleihen</button>
+										:disabled='username.trim().length < 3'>Ausleihen
+						</button>
 					</form>
 				</div>
 			</div>
@@ -28,7 +31,8 @@
 						<h3 class='title'>Buch #{{ query }} zurückgeben</h3>
 						<input type='text' v-model='username' placeholder='Username'>
 						<button type='submit' @click.stop='returnBook(Number(query), username)'
-										:disabled='username.trim().length < 3'>Zurückgeben</button>
+										:disabled='username.trim().length < 3'>Zurückgeben
+						</button>
 					</form>
 				</div>
 			</div>
@@ -36,7 +40,6 @@
 		</div>
 
 		<div class='filters'>
-
 			<div class='search'>
 				<SearchBar @enter='onSearch' />
 			</div>
@@ -44,29 +47,51 @@
 			<div class='table-filter-container content'>
 				<div class='filter-gradient-overlay'></div>
 
-				<div class='table-filters'>
-					<BookFilter title='Ausgeliehen'
-											label='borrowed'
-											@update='onFilterLozenge' />
-					<BookFilter title='Verfügbar'
-											label='available'
-											@update='onFilterLozenge' />
-					<BookFilter v-for='category in categories'
-											:title='category'
-											@update='onFilterLozenge' />
-				</div>
+				<transition mode='out-in' name="fade">
+					<div v-if='isReady' class='table-filters'>
+						<template>
+							<BookFilter title='Ausgeliehen'
+													label='borrowed'
+													@update='onFilterLozenge' />
+							<BookFilter title='Verfügbar'
+													label='available'
+													@update='onFilterLozenge' />
+							<BookFilter v-for='category in categories'
+													:title='category'
+													@update='onFilterLozenge' />
+						</template>
+					</div>
+					<div v-else class='table-filters'>
+						<template>
+							<BookFilterLoader />
+							<BookFilterLoader />
+							<BookFilterLoader />
+							<BookFilterLoader />
+						</template>
+					</div>
+				</transition>
 			</div>
 		</div>
 
-		<div class='table content' :key='`${query}-${filterStr}`'>
-			<BookEntry
-				v-for='(book, pos) in books'
-				:book='book'
-				:key='`book::${book.book_id}_${pos}_${book.owner}`'
-				@click.native.stop='selectBook(book)'
-				:active='selectedBookId === book.book_id'
-			/>
-		</div>
+		<transition name="fade">
+			<div v-if='isReady' class='table content' :key='`${query}-${filterStr}`'>
+				<template>
+					<BookEntry
+						v-for='(book, pos) in books'
+						:book='book'
+						:key='`book::${book.book_id}_${pos}_${book.owner}`'
+						@click.native.stop='selectBook(book)'
+						:active='selectedBookId === book.book_id'
+					/>
+				</template>
+			</div>
+			<div else class='table content' :key='`${query}-${filterStr}`'>
+				<template>
+					<BookEntryLoader :key='`book-entry-loader_${pos}`'
+													 v-for='(book, pos) in [...Array(7).map((_v, pos) => pos + 1)]' />
+				</template>
+			</div>
+		</transition>
 
 		<div class='overlay-options' v-if='selectedBookId >= 0'>
 			<button @click='displayBorrowModal = true'>Ausleihen</button>
@@ -80,9 +105,11 @@ import { IBook } from '@/types';
 import BookFilter from '@/components/BookFilter.vue';
 import BookEntry from '@/components/BookEntry.vue';
 import SearchBar from '@/components/SearchBar.vue';
+import BookFilterLoader from '@/components/loader/BookFilterLoader.vue';
+import BookEntryLoader from '@/components/loader/BookEntryLoader.vue';
 
 @Component({
-	components: { SearchBar, BookEntry, BookFilter }
+	components: { BookEntryLoader, BookFilterLoader, SearchBar, BookEntry, BookFilter }
 })
 export default class App extends Vue {
 	@Prop() private msg!: string;
@@ -98,12 +125,20 @@ export default class App extends Vue {
 	displayBorrowModal = false;
 	displayReturnModal = false;
 
-	get filterStr(): string {
-		return [...this.filter.values()].join('-');
-	}
+	ready = false
 
 	async beforeMount() {
 		await this.$store.dispatch('initialize');
+
+		setTimeout(() => this.ready = true, 3000)
+	}
+
+	set isReady(ready: boolean) {
+		this.ready = ready
+	}
+
+	get isReady(): boolean {
+		return this.ready ;
 	}
 
 	async borrow(username: string) {
@@ -156,6 +191,10 @@ export default class App extends Vue {
 		this.$store.commit('setQuery', queryString);
 	}
 
+	get filterStr(): string {
+		return [...this.filter.values()].join('-');
+	}
+
 	get query(): string {
 		return this.$store.state.query;
 	}
@@ -184,6 +223,15 @@ export default class App extends Vue {
 <style lang='css'>
 :root {
     --background-color: #f8f6f5;
+    --loader-bg-color: rgba(0, 0, 0, .1);
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+    opacity: 1;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0;
 }
 </style>
 
@@ -275,6 +323,7 @@ export default class App extends Vue {
 
 body {
   background-color: var(--background-color) !important;
+  padding-bottom: 3rem !important;
 }
 
 .content {
@@ -406,9 +455,9 @@ nav {
   right: 0;
   bottom: 2rem;
 
-	* {
+  * {
     box-shadow: 0 0 4rem -.5rem #153b2a;
-	}
+  }
 }
 
 button {
