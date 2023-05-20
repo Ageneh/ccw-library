@@ -8,13 +8,12 @@
 				Zurückgeben
 			</button>
 		</div>
-
 		<div id='borrow-modal' class='modal' aria-modal='true' v-if='displayBorrowModal'>
 			<div class='form-container' @click.prevent>
 				<div class='form'>
 					<form action='#' method='dialog' onsubmit='() => {}'>
 						<h3 class='title'>"{{ selectedBook.title }}" ausleihen</h3>
-						<input type='text' v-model='username' placeholder='Username'>
+						<input type='text' v-model='username' placeholder='Benutzername'>
 						<button type='submit' @click.stop='borrow(username)'
 										:disabled='username.trim().length < 3'>Ausleihen
 						</button>
@@ -29,7 +28,7 @@
 				<div class='form'>
 					<form action='#' method='dialog' onsubmit='() => {}'>
 						<h3 class='title'>Buch #{{ query }} zurückgeben</h3>
-						<input type='text' v-model='username' placeholder='Username'>
+						<input type='text' v-model='username' placeholder='Benutzername'>
 						<button type='submit' @click.stop='returnBook(Number(query), username)'
 										:disabled='username.trim().length < 3'>Zurückgeben
 						</button>
@@ -45,10 +44,10 @@
 			</div>
 
 			<div class='table-filter-container content'>
-				<div class='filter-gradient-overlay'></div>
+				<div class='filter-gradient-overlay' :data-start='showFilterStartOverlay'></div>
 
-				<transition mode='out-in' name="fade">
-					<div v-if='isReady' class='table-filters'>
+				<transition mode='out-in' name='fade'>
+					<div id='table-filters' v-if='isReady' class='table-filters' @scroll='onCategoriesScroll'>
 						<template>
 							<BookFilter title='Ausgeliehen'
 													label='borrowed'
@@ -73,7 +72,7 @@
 			</div>
 		</div>
 
-		<transition name="fade">
+		<transition name='fade'>
 			<div v-if='isReady' class='table content' :key='`${query}-${filterStr}`'>
 				<template>
 					<BookEntry
@@ -85,7 +84,7 @@
 					/>
 				</template>
 			</div>
-			<div else class='table content' :key='`${query}-${filterStr}`'>
+			<div v-else class='table content' :key='`${query}-${filterStr}`'>
 				<template>
 					<BookEntryLoader :key='`book-entry-loader_${pos}`'
 													 v-for='(book, pos) in [...Array(7).map((_v, pos) => pos + 1)]' />
@@ -93,7 +92,7 @@
 			</div>
 		</transition>
 
-		<div class='overlay-options' v-if='selectedBookId >= 0'>
+		<div v-if='selectedBookId >= 0' class='overlay-options'>
 			<button @click='displayBorrowModal = true'>Ausleihen</button>
 		</div>
 	</div>
@@ -125,20 +124,29 @@ export default class App extends Vue {
 	displayBorrowModal = false;
 	displayReturnModal = false;
 
-	ready = false
+	ready = false;
+	isFilterAtStart = true;
 
 	async beforeMount() {
 		await this.$store.dispatch('initialize');
+	}
 
-		setTimeout(() => this.ready = true, 3000)
+	mounted() {
+		const el = document.getElementById('table-filters');
+		if (el) {
+			el.onscroll = (ev: any) => {
+				if (ev.srcElement.scrollLeft > 30) this.showFilterStartOverlay = true;
+				console.log('>>>>>>>>>>', ev);
+			};
+		}
 	}
 
 	set isReady(ready: boolean) {
-		this.ready = ready
+		this.ready = ready;
 	}
 
 	get isReady(): boolean {
-		return this.ready ;
+		return this.ready || this.$store.getters.isReady;
 	}
 
 	async borrow(username: string) {
@@ -191,6 +199,19 @@ export default class App extends Vue {
 		this.$store.commit('setQuery', queryString);
 	}
 
+	onCategoriesScroll(e: any) {
+		console.log(e.srcElement.scrollLeft);
+		if (e.srcElement.scrollLeft > 30) this.showFilterStartOverlay = true;
+	}
+
+	set showFilterStartOverlay(isStart: boolean) {
+		this.isFilterAtStart = isStart;
+	}
+
+	get showFilterStartOverlay() {
+		return this.isFilterAtStart;
+	}
+
 	get filterStr(): string {
 		return [...this.filter.values()].join('-');
 	}
@@ -230,7 +251,9 @@ export default class App extends Vue {
     transition: opacity .5s;
     opacity: 1;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
+{
     opacity: 0;
 }
 </style>
@@ -249,6 +272,18 @@ export default class App extends Vue {
   display: flex;
   align-items: center;
   justify-items: center;
+
+  @media screen and (max-width: 890px) {
+    //align-items: start;
+
+    .title {
+      margin-bottom: initial;
+    }
+
+    //.form-container {
+    //  transform: translateY(0) !important;
+    //}
+  }
 
   .blanket {
     width: 100%;
@@ -269,8 +304,9 @@ export default class App extends Vue {
   input {
     position: relative;
     padding: 1rem;
-    padding-left: 3rem;
+    //padding-left: 3rem;
     border-radius: .5rem;
+    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.05);
     border: 2px solid transparent;
     //margin: 1rem 0;
     //background-color: transparent;
@@ -282,6 +318,8 @@ export default class App extends Vue {
     transition-timing-function: ease-out;
 
     font-size: larger;
+
+		margin-bottom: 1.25rem;
 
     &:hover {
       background-color: rgba(255, 255, 255, 10);
@@ -304,13 +342,15 @@ export default class App extends Vue {
       position: relative;
       margin-left: auto;
       margin-right: auto;
-      width: 500px;
+      min-width: 300px;
+      width: 100%;
+      max-width: 560px;
       height: 300px;
 
       form {
         background: white;
         border-radius: 1rem;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 1rem;
         box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.3);
       }
     }
@@ -323,7 +363,7 @@ export default class App extends Vue {
 
 body {
   background-color: var(--background-color) !important;
-  padding-bottom: 3rem !important;
+  padding-bottom: 4rem !important;
 }
 
 .content {
@@ -338,7 +378,7 @@ body {
   text-align: center;
   color: #2c3e50;
 
-  padding: 2rem 1rem 2rem 1rem;
+  padding: 1rem 1rem 2rem 1rem;
 }
 
 .filters {
@@ -348,6 +388,7 @@ body {
     z-index: 0;
     display: flex;
     flex-direction: row;
+    margin-top: 1rem;
 
     .table-filters {
       display: flex;
@@ -356,9 +397,10 @@ body {
 
       overflow-x: scroll;
 
-      padding-left: 2rem;
+      //padding-left: 2rem;
       padding-right: 2rem;
-      padding-bottom: 1rem;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
     }
 
     .filter-gradient-overlay {
@@ -381,12 +423,14 @@ body {
 
       &:after {
         right: 0;
-        background: linear-gradient(-90deg, var(--background-color) 0%, transparent 85%);
+        background: linear-gradient(-90deg, var(--background-color) 0%, transparent 95%);
       }
 
-      &:before {
-        left: 0;
-        background: linear-gradient(90deg, var(--background-color) 0%, transparent 85%);
+      &:not([data-start]) {
+        &:before {
+          left: 0;
+          background: linear-gradient(90deg, var(--background-color) 0%, transparent 95%);
+        }
       }
     }
   }
@@ -396,11 +440,16 @@ body {
 .logo-container {
   height: 85px;
 
+  @media screen and (max-width: 890px) {
+  	height: 65px;
+  }
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   padding: 0.5rem;
+  margin-bottom: 1rem;
 
   img, h1 {
     height: 100%;
@@ -453,7 +502,7 @@ nav {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 2rem;
+  bottom: 1rem;
 
   * {
     box-shadow: 0 0 4rem -.5rem #153b2a;

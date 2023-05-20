@@ -25,7 +25,7 @@ export default class BookEntryLoader extends BookEntry {
 }
 </script>
 
-<style lang='less'>
+<style lang='less' scoped>
 @import "../../style.less";
 
 .book-entry {

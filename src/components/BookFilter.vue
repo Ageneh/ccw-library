@@ -39,6 +39,10 @@ export default class BookFilter extends Vue {
 @transparent: rgba(0, 0, 0, 0);
 
 .filter {
+	&:first-of-type {
+    margin-left: initial;
+	}
+
   cursor: pointer;
 
 	display:  flex;

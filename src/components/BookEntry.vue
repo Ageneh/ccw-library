@@ -33,6 +33,7 @@ export default class BookEntry extends Vue {
 <style lang='less'>
 @primary-color: #296b6a;
 @rad: 1rem;
+@min-width: 890px;
 
 .book-entry {
   cursor: pointer;
@@ -115,6 +116,12 @@ export default class BookEntry extends Vue {
     text-align: left;
     opacity: 0.5;
     //margin-right: 1rem;
+
+
+    @media screen and (max-width: 470px) {
+      display: none;
+    }
+
   }
 
   //&::before {
@@ -135,11 +142,18 @@ export default class BookEntry extends Vue {
   //}
 
   &:hover, &[data-selected="true"] {
-    background-color: white;
-    top: -5px;
-    transform: scale(1.002);
     box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.06);
     border-radius: .5rem;
+		background-color: white;
+
+    @media screen and (min-width: @min-width) {
+      transform: scale(1.002);
+      top: -5px;
+    }
+
+    @media handheld and (min-width: @min-width) {
+      background-color: inherit;
+    }
   }
 
   .selected-checkmark {
@@ -154,15 +168,11 @@ export default class BookEntry extends Vue {
     color: #42b983;
     border: 2px solid rgba(66, 185, 131, 0.33);
 
-    .book-main, .book-pre {
-      margin-left: .5rem;
+    @media screen and (min-width: @min-width) {
+      .book-main, .book-pre {
+        margin-left: .5rem;
+      }
     }
-
-    //&::before {
-    //  opacity: 1;
-    //  left: 1rem;
-    //}
-
 
     .selected-checkmark {
       top: 1rem;
