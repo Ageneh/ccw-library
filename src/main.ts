@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import './registerServiceWorker';
+// import './registerServiceWorker';
 // import router from './router';
 import 'carbon-components/css/carbon-components.min.css';
 import store from '@/store';
