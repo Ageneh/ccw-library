@@ -40,23 +40,44 @@ export default new Vuex.Store<State>({
 		filteredBooks: (state) => {
 			const { query, filters, allBooks, categories } = state;
 
-			console.log(JSON.parse(JSON.stringify(state)));
-
 			const searchResults = query?.trim() === ''
 				? allBooks
 				: searchUtil.searchTransformed(query, allBooks);
-			const booksByCategory: Books = filters.length < 1
-				? searchResults
-				: searchResults.filter(book => book.category.trim() != '' && filters.includes(book.category));
 
-			return booksByCategory;
+
+			const filterBooks = (books: Books) => {
+				let matchedBooks: IBook[] = [];
+				books.forEach((book: IBook) => {
+					const category = book.category;
+					for (const filter of state.filters) {
+						if (['available', 'borrowed'].includes(filter.toLowerCase())) {
+							if (filter === 'available' && !book.borrowed?.trim()) {
+								matchedBooks.push(book);
+								break;
+							}
+							if (filter === 'borrowed' && book.borrowed && book.borrowed.trim().length > 0) {
+								matchedBooks.push(book);
+								break;
+							}
+						} else if (book.category.trim() !== '' && filters.includes(book.category)) {
+							matchedBooks.push(book);
+							break;
+						}
+					}
+				});
+				return matchedBooks;
+			};
+
+			return filters.length < 1
+				? searchResults
+				: filterBooks(searchResults);
 		},
 		isReady: (state) => !!state.allBooks && state.allBooks.length > 0,
 		getByBookId: (state) => {
 			return (bookId: number): IBook | undefined => {
-				const filtered = state.allBooks.filter(book => book.book_id === bookId)
+				const filtered = state.allBooks.filter(book => book.book_id === bookId);
 				if (filtered.length > 0) {
-					return filtered[0]
+					return filtered[0];
 				}
 				return undefined;
 			};

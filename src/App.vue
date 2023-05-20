@@ -191,7 +191,6 @@ export default class App extends Vue {
 	}
 
 	onFilterLozenge({ category, active }: any) {
-		if (['available', 'borrowed'].includes(category)) return;
 		this.$store.commit('toggleCategoryFilter', { category, active });
 	}
 
@@ -275,7 +274,6 @@ export default class App extends Vue {
 
   @media screen and (max-width: 890px) {
     //align-items: start;
-
     .title {
       margin-bottom: initial;
     }
@@ -319,7 +317,7 @@ export default class App extends Vue {
 
     font-size: larger;
 
-		margin-bottom: 1.25rem;
+    margin-bottom: 1.25rem;
 
     &:hover {
       background-color: rgba(255, 255, 255, 10);
@@ -394,8 +392,8 @@ body {
       display: flex;
       flex-direction: row;
       position: relative;
-
-      overflow-x: scroll;
+      cursor: grab;
+      overflow-x: auto;
 
       //padding-left: 2rem;
       padding-right: 2rem;
@@ -441,7 +439,7 @@ body {
   height: 85px;
 
   @media screen and (max-width: 890px) {
-  	height: 65px;
+    height: 65px;
   }
 
   display: flex;

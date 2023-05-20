@@ -104,11 +104,11 @@ export default class BookEntry extends Vue {
   }
 
   .book-pre {
-    @wdt: 50px;
-    //width: @wdt;
-    //min-width: @wdt;
+    @wdt: 30px;
+    width: @wdt;
+    min-width: @wdt;
     //max-width: @wdt;
-    margin-right: 1.5rem;
+    margin-right: 1.25rem;
     //flex-grow: 1;
     display: flex;
     flex-direction: column;
