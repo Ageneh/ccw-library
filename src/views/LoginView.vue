@@ -1,5 +1,5 @@
 <template>
-	<div id='app' v-if='$store.getters.isReady'>
+	<div id='login' v-if='$store.getters.isReady'>
 		<div class='logo-container content'>
 			<h1>
 				<img src='/img/chapel-library-logo.png' alt='Chapel Library Logo'>
@@ -260,8 +260,6 @@ export default class App extends Vue {
 </style>
 
 <style lang='less'>
-@import "./vars.less";
-
 .modal {
   background-color: rgba(40, 40, 40, 0.9);
   position: fixed;
@@ -361,7 +359,7 @@ export default class App extends Vue {
 </style>
 
 <style lang='less'>
-@import "./vars.less";
+@import "../vars.less";
 
 @primary-color: #296b6a;
 
@@ -441,15 +439,10 @@ body {
 }
 
 .logo-container {
-
   height: 85px;
 
   @media screen and (max-width: @wd-small) {
     height: 65px;
-  }
-
-  @media screen and (max-width: @wd-xsmall) {
-    height: 55px;
   }
 
   display: flex;
@@ -467,9 +460,8 @@ body {
   button {
     padding: .25rem .75rem;
     background-color: white;
-    color: #42b983;
     border: 2px solid white;
-    margin: .25rem 0 !important;
+		margin: .25rem 0 !important;
 
     box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.2);
   }
@@ -486,10 +478,6 @@ nav {
       color: #42b983;
     }
   }
-}
-
-a, button {
-  text-decoration: none;
 }
 
 .table {
@@ -518,10 +506,6 @@ a, button {
   right: 0;
   bottom: 1rem;
 
-  button {
-    color: white;
-  }
-
   * {
     box-shadow: 0 0 4rem -.5rem #153b2a;
   }
@@ -534,16 +518,10 @@ button {
   background-color: #42b983;
   border: 2px solid #42b983;
   cursor: pointer;
-  font-weight: 400;
 
   &:disabled {
     background-color: rgba(66, 185, 131, 0.39);
     border: 2px solid rgba(66, 185, 131, 0.39);
   }
-}
-
-body, body * {
-  -webkit-text-size-adjust: none;
-  font-size: 98% !important;
 }
 </style>

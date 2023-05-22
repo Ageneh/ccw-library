@@ -33,6 +33,8 @@ export default class SearchBar extends Vue {
 </script>
 
 <style lang='less'>
+@import "../vars.less";
+
 .search {
   padding: 1rem inherit;
 	display: block;
@@ -73,7 +75,7 @@ export default class SearchBar extends Vue {
       background-color: white;
     }
 
-    @media screen and (max-width: 890px) {
+    @media screen and (max-width: @wd-small) {
       background-color: rgba(255, 255, 255, 10);
 
       &:hover {
