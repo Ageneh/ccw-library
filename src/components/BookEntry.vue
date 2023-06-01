@@ -124,23 +124,6 @@ export default class BookEntry extends Vue {
 
   }
 
-  //&::before {
-  //  content: "";
-  //  position: absolute;
-  //  width: 20px;
-  //  height: 20px;
-  //  background-color: #42b983;
-  //  top: auto;
-  //  bottom: auto;
-  //  display: flex;
-  //  align-self: center;
-  //  left: -20px;
-  //  opacity: 0;
-	//
-  //  transition-timing-function: ease-out;
-  //  transition-duration: 200ms;
-  //}
-
   &:hover, &[data-selected="true"] {
     box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.06);
     border-radius: .5rem;
@@ -154,6 +137,10 @@ export default class BookEntry extends Vue {
     @media handheld and (min-width: @min-width) {
       background-color: inherit;
     }
+
+		.lozenge{
+			background: transparent;
+		}
   }
 
   .selected-checkmark {

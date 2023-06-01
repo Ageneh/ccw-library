@@ -6,6 +6,7 @@
 			</h1>
 			<button v-if='!isNaN(Number(query)) && query.trim().length > 0'
 							type='submit'
+							class='light'
 							@click='displayReturnModal = true'>
 				Zurückgeben
 			</button>
@@ -94,9 +95,11 @@
 			</div>
 		</transition>
 
-		<div v-if='selectedBookId >= 0' class='overlay-options'>
-			<button @click='displayBorrowModal = true'>Ausleihen</button>
-		</div>
+		<transition mode='out-in' name='fade'>
+			<div v-if='selectedBookId >= 0' class='overlay-options'>
+				<button @click='displayBorrowModal = true'>Ausleihen</button>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -246,6 +249,8 @@ export default class App extends Vue {
 :root {
     --background-color: #f8f6f5;
     --loader-bg-color: rgba(0, 0, 0, .1);
+    --color-primary: #296b6a;
+    --border-radius: 1rem;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -363,8 +368,6 @@ export default class App extends Vue {
 <style lang='less'>
 @import "./vars.less";
 
-@primary-color: #296b6a;
-
 body {
   background-color: var(--background-color) !important;
   padding-bottom: 4rem !important;
@@ -463,16 +466,6 @@ body {
     height: 100%;
     width: auto;
   }
-
-  button {
-    padding: .25rem .75rem;
-    background-color: white;
-    color: #42b983;
-    border: 2px solid white;
-    margin: .25rem 0 !important;
-
-    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.2);
-  }
 }
 
 nav {
@@ -509,7 +502,8 @@ a, button {
   border-radius: 1rem;
   background-color: rgba(0, 0, 0, .04);
   padding: .25rem .5rem;
-  font-size: smaller;
+  font-size: 10px !important;
+  transition: background-color .5s;
 }
 
 .overlay-options {
@@ -523,22 +517,40 @@ a, button {
   }
 
   * {
-    box-shadow: 0 0 4rem -.5rem #153b2a;
+    box-shadow: 0 0 4rem -.25rem #576e63;
   }
 }
 
 button {
   border-radius: 10rem !important;
-  padding: .75rem 1.25rem;
-  margin: 1rem !important;
-  background-color: #42b983;
-  border: 2px solid #42b983;
+  padding: .55rem 1.25rem;
+  margin: .25rem 0 !important;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary);
   cursor: pointer;
   font-weight: 400;
 
   &:disabled {
     background-color: rgba(66, 185, 131, 0.39);
     border: 2px solid rgba(66, 185, 131, 0.39);
+  }
+
+  color: #42b983;
+  //border: 2px solid white;
+  transition: background-color .2s;
+
+  box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.2);
+
+  &.light {
+		color: var(--color-primary);
+    background-color: transparent;
+    border-color: transparent;
+
+    box-shadow: none;
+
+    &:hover {
+      background-color: white;
+    }
   }
 }
 
