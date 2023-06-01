@@ -1,5 +1,5 @@
 <template>
-	<div class='filter' :data-selected='active' @click='onClick'>
+	<div class='filter transitioned' :data-selected='active' @click='onClick'>
 		{{ title }}
 	</div>
 </template>
@@ -34,8 +34,6 @@ export default class BookFilter extends Vue {
 </script>
 
 <style lang='less'>
-@primary-color: #296b6a;
-@primary-color-transluscent: rgba(41, 107, 106, 0.3);
 @transparent: rgba(0, 0, 0, 0);
 
 .filter {
@@ -58,20 +56,14 @@ export default class BookFilter extends Vue {
   padding: .5rem 1rem;
   border-radius: 2rem;
 
-	transition-timing-function:ease-in-out;
-	transition-property: background-color, color;
-	transition-duration: 250ms;
-
-  //color: @primary-color;
-
   border: 2px solid transparent;
 
 	white-space: nowrap;
 
   &[data-selected="true"] {
-    background-color: @primary-color;
+    background-color: var(--color-primary);
 		color: white;
-    border: 2px solid @primary-color-transluscent;
+    border: 2px solid var(--color-primary-luscent);
   }
 }
 </style>

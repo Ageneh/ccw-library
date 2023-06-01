@@ -31,7 +31,6 @@ export default class BookEntry extends Vue {
 </script>
 
 <style lang='less'>
-@primary-color: #296b6a;
 @rad: 1rem;
 @min-width: 890px;
 
@@ -53,7 +52,7 @@ export default class BookEntry extends Vue {
 
   overflow: hidden;
 
-  box-shadow: 0 0rem 0rem 0rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
 
   border: 2px solid transparent;
 
@@ -61,12 +60,10 @@ export default class BookEntry extends Vue {
     position: relative;
   }
 
-	&, .selected-checkmark {
+  &, .selected-checkmark {
     transition-timing-function: ease-in-out;
     transition-duration: 200ms;
-	}
-
-  //background-color: #ffffff;
+  }
 
   .book-main {
     text-align: left;
@@ -82,7 +79,7 @@ export default class BookEntry extends Vue {
 
   .book-title {
     font-weight: 700;
-		margin-bottom: .5rem;
+    margin-bottom: .5rem;
   }
 
   .book-author {
@@ -107,27 +104,22 @@ export default class BookEntry extends Vue {
     @wdt: 30px;
     width: @wdt;
     min-width: @wdt;
-    //max-width: @wdt;
     margin-right: 1.25rem;
-    //flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-items: start;
     text-align: left;
     opacity: 0.5;
-    //margin-right: 1rem;
-
 
     @media screen and (max-width: 470px) {
       display: none;
     }
-
   }
 
   &:hover, &[data-selected="true"] {
     box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.06);
     border-radius: .5rem;
-		background-color: white;
+    background-color: white;
 
     @media screen and (min-width: @min-width) {
       transform: scale(1.002);
@@ -138,9 +130,9 @@ export default class BookEntry extends Vue {
       background-color: inherit;
     }
 
-		.lozenge{
-			background: transparent;
-		}
+    .lozenge {
+      background: transparent;
+    }
   }
 
   .selected-checkmark {
@@ -152,8 +144,8 @@ export default class BookEntry extends Vue {
 
   &[data-selected="true"] {
     background-color: white;
-    color: #42b983;
-    border: 2px solid rgba(66, 185, 131, 0.33);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary-luscent);
 
     @media screen and (min-width: @min-width) {
       .book-main, .book-pre {
@@ -168,7 +160,6 @@ export default class BookEntry extends Vue {
   }
 
   &[data-borrowed="true"] {
-    //background-color: rgba(0, 0, 0, 0.1);
     background-color: rgba(0, 0, 0, 0.1);
     opacity: .5;
 

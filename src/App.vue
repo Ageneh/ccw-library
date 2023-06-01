@@ -42,9 +42,7 @@
 		</div>
 
 		<div class='filters'>
-			<div class='search'>
-				<SearchBar @enter='onSearch' />
-			</div>
+			<SearchBar @enter='onSearch' />
 
 			<div class='table-filter-container content'>
 				<div class='filter-gradient-overlay' :data-start='showFilterStartOverlay'></div>
@@ -200,6 +198,7 @@ export default class App extends Vue {
 	}
 
 	onSearch(queryString: string) {
+		console.log("MIC")
 		this.$store.commit('setQuery', queryString);
 	}
 
@@ -249,147 +248,29 @@ export default class App extends Vue {
 :root {
     --background-color: #f8f6f5;
     --loader-bg-color: rgba(0, 0, 0, .1);
+    --color-text: #2c3e50;
     --color-primary: #296b6a;
+    --color-primary-luscent: rgba(41, 107, 106, 0.33);
     --border-radius: 1rem;
-}
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .5s;
-    opacity: 1;
-}
-
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */
-{
-    opacity: 0;
+    --mid-gray-luscent: rgba(0, 0, 0, 0.2);
 }
 </style>
 
 <style lang='less'>
+@import "./style.less";
 @import "./vars.less";
-
-.modal {
-  background-color: rgba(40, 40, 40, 0.9);
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  align-items: center;
-  justify-items: center;
-
-  @media screen and (max-width: @wd-small) {
-    //align-items: start;
-    .title {
-      margin-bottom: initial;
-    }
-
-    //.form-container {
-    //  transform: translateY(0) !important;
-    //}
-  }
-
-  .blanket {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 0;
-  }
-
-  //color: white;
-
-  .title {
-    margin-bottom: 2rem
-  }
-
-  input {
-    position: relative;
-    padding: 1rem;
-    //padding-left: 3rem;
-    border-radius: .5rem;
-    box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.05);
-    border: 2px solid transparent;
-    //margin: 1rem 0;
-    //background-color: transparent;
-    width: 100%;
-    max-width: 500px;
-    z-index: 5;
-
-    transition-duration: 150ms;
-    transition-timing-function: ease-out;
-
-    font-size: larger;
-
-    margin-bottom: 1.25rem;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 10);
-    }
-
-    &:active, &:focus {
-      background-color: white;
-    }
-  }
-
-  .form-container {
-    //padding: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    z-index: 5;
-    transform: translateY(-3rem);
-
-    .form {
-      position: relative;
-      margin-left: auto;
-      margin-right: auto;
-      min-width: 300px;
-      width: 100%;
-      max-width: 560px;
-      height: 300px;
-
-      form {
-        background: white;
-        border-radius: 1rem;
-        padding: 2rem 1rem 1rem;
-        box-shadow: 0 1.25rem 1.5rem -.5rem rgba(0, 0, 0, 0.3);
-      }
-    }
-  }
-}
-</style>
-
-<style lang='less'>
-@import "./vars.less";
-
-body {
-  background-color: var(--background-color) !important;
-  padding-bottom: 4rem !important;
-}
-
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-}
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  //font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--color-text);
 
   padding: 1rem 1rem 2rem 1rem;
 }
 
 .filters {
-
   .table-filter-container {
     position: relative;
     z-index: 0;
@@ -444,7 +325,6 @@ body {
 }
 
 .logo-container {
-
   height: 85px;
 
   @media screen and (max-width: @wd-small) {
@@ -481,29 +361,14 @@ nav {
   }
 }
 
-a, button {
-  text-decoration: none;
-}
-
 .table {
-  //@rad: .2rem;
-  @rad: 1rem;
+  position: relative;
 
   .books-list {
     display: flex;
     flex-direction: column;
     justify-items: stretch;
   }
-
-  position: relative;
-}
-
-.lozenge {
-  border-radius: 1rem;
-  background-color: rgba(0, 0, 0, .04);
-  padding: .25rem .5rem;
-  font-size: 10px !important;
-  transition: background-color .5s;
 }
 
 .overlay-options {
@@ -521,41 +386,4 @@ a, button {
   }
 }
 
-button {
-  border-radius: 10rem !important;
-  padding: .55rem 1.25rem;
-  margin: .25rem 0 !important;
-  background-color: var(--color-primary);
-  border: 2px solid var(--color-primary);
-  cursor: pointer;
-  font-weight: 400;
-
-  &:disabled {
-    background-color: rgba(66, 185, 131, 0.39);
-    border: 2px solid rgba(66, 185, 131, 0.39);
-  }
-
-  color: #42b983;
-  //border: 2px solid white;
-  transition: background-color .2s;
-
-  box-shadow: 0 1rem 3rem -.5rem rgba(0, 0, 0, 0.2);
-
-  &.light {
-		color: var(--color-primary);
-    background-color: transparent;
-    border-color: transparent;
-
-    box-shadow: none;
-
-    &:hover {
-      background-color: white;
-    }
-  }
-}
-
-body, body * {
-  -webkit-text-size-adjust: none;
-  font-size: 98% !important;
-}
 </style>

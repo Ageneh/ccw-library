@@ -4,6 +4,8 @@ import App from './App.vue';
 // import router from './router';
 import 'carbon-components/css/carbon-components.min.css';
 import store from '@/store';
+// @ts-ignore
+import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components';
 
 const CarbonComponentsVue = require('@carbon/vue');
 const { CarbonIconsVue } = require('@carbon/icons-vue');
@@ -20,6 +22,18 @@ Vue.use(CarbonIconsVue, {
 		CheckmarkFilled
 	}
 });
+
+// @ts-ignore
+Vue.material = {
+	ripple: true,
+	theming: {},
+	locale: {
+		dateFormat: 'dd-MM-yyyy',
+		firstDayOfAWeek: 1,
+		cancel: 'Abbrechen',
+		confirm: 'Ok'
+	}
+};
 
 new Vue({
 	// router,

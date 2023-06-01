@@ -3,6 +3,13 @@ declare module "@carbon/icons-vue" {
 	export default icons
 }
 
+declare module "vue-material" {
+	import VM from 'vue-material'
+	export default {
+		components: VM.components,
+	}
+}
+
 export interface IBook {
 	_id: string; // ID FROM AIRTABLE
 	book_id: number;
