@@ -1,5 +1,5 @@
 <template>
-	<div id='app' v-if='$store.getters.isReady'>
+	<div id='app'>
 		<div class='logo-container content'>
 			<h1>
 				<img src='/img/chapel-library-logo.png' alt='Chapel Library Logo'>
@@ -73,23 +73,22 @@
 			</div>
 		</div>
 
-		<transition name='fade'>
-			<div v-if='isReady' class='table content' :key='`${query}-${filterStr}`'>
-				<template>
-					<BookEntry
-						v-for='(book, pos) in books'
-						:book='book'
-						:key='`book::${book.book_id}_${pos}_${book.owner}`'
-						@click.native.stop='selectBook(book)'
-						:active='selectedBookId === book.book_id'
-					/>
-				</template>
+		<transition name='fade' type='transition' duration='500'>
+			<div v-if='isReady' class='table content'>
+				<BookEntry
+					v-for='(book, pos) in books'
+					:book='book'
+					:key='`book::${book.book_id}_${pos}_${book.owner}`'
+					@click.native.stop='selectBook(book)'
+					:active='selectedBookId === book.book_id'
+				/>
 			</div>
-			<div v-else class='table content' :key='`${query}-${filterStr}`'>
-				<template>
-					<BookEntryLoader :key='`book-entry-loader_${pos}`'
-													 v-for='(book, pos) in [...Array(7).map((_v, pos) => pos + 1)]' />
-				</template>
+		</transition>
+
+		<transition name='fade' type='transition' duration='500'>
+			<div v-if='!isReady' class='table content'>
+				<BookEntryLoader :key='`book-entry-loader_${pos}`'
+												 v-for='(book, pos) in [...Array(7).map((_v, pos) => pos + 1)]' />
 			</div>
 		</transition>
 
@@ -134,7 +133,7 @@ export default class App extends Vue {
 		await this.$store.dispatch('initialize');
 	}
 
-	mounted() {
+	async mounted() {
 		const el = document.getElementById('table-filters');
 		if (el) {
 			el.onscroll = (ev: any) => {
@@ -247,7 +246,7 @@ export default class App extends Vue {
 <style lang='css'>
 :root {
     --background-color: #f8f6f5;
-    --loader-bg-color: rgba(0, 0, 0, .1);
+    --loader-bg-color: rgba(0, 0, 0, .07);
     --color-text: #2c3e50;
     --color-primary: #296b6a;
     --color-primary-luscent: rgba(41, 107, 106, 0.33);
